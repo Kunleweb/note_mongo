@@ -1,4 +1,14 @@
-const user = require('./../model/userSchema')
+const user = require('./../model/userSchema');
+const jwt = require('jsonwebtoken');
+
+
+const sign = id=>{
+    return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn: 
+        process.env.JWT_EXPIRES_IN
+    })
+}
+
+
 
 
 exports.loginpage = (req,res)=>{
@@ -10,10 +20,14 @@ exports.login = async (req,res, next)=>{
     if(!email|| !password){
         res.status(401).json({status: 'error', message: 'Please enter details'})
     }
-    const User = await user.findOne({email, password})
-    if(!User||!password) return next(res.status(401).json({status: 'wrong details'}))
-    res.status(200).json({status: 'success', message: 'user logged in!'})
+    const User = await user.findOne({email}).select('+password');
+    if(!User||!await User.correctPassword(password, User.password)) return next(res.status(401).json({status: 'wrong details'}));
+    const token = sign(User)
+    res.status(200).json({status: 'success', token, message: 'user logged in!'})
 }
+
+
+
 
 exports.logout =  (req, res)=>{
    res.end('wlecome to logout')

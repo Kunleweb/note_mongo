@@ -34,6 +34,12 @@ user_note.pre('save', async function(next){
 
 
 
+//now we need a document middleware to compare hashed password to login password
+user_note.methods.correctPassword = async function(candidatePassword, userPassword){
+                        return await bcrypt.compare(candidatePassword, userPassword)
+
+}
+
 
 
 
