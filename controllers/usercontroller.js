@@ -46,13 +46,19 @@ exports.login = async (req,res, next)=>{
 
 
 exports.logout =  (req, res)=>{
-   res.end('wlecome to logout')
+   res.cookie( 'jwt', 'loggedout',
+    {expires: new Date(Date.now()+10*500),
+        httpOnly: true
+    }
+
+   )
+   res.status(200).json({status: 'success', message: 'logged out!'})
    
 }
 
 exports.signup = async(req, res)=>{
     try{const User = await user.create(req.body);
-        res.status(200).json({ status: 'success', message:'User created!', data: {data:User}})
+       cookieStore(User, 200, res)
     }catch(err){res.status(400).json({status: 'error', message:err.message})}
 
     
