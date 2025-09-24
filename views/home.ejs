@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Note - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="home-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Secure Note</h2>
+        <button class="sidebar-btn active" onclick="showPage('mynotes', this)">My Notes</button>
+        <button class="sidebar-btn" onclick="showPage('addnote', this)">Add Note</button>
+        <button class="sidebar-btn" onclick="showPage('deletenote', this)">Delete Note</button>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div id="mynotes" class="page">
+            <h2>My Notes</h2>
+            <p>All notes will appear here later.</p>
+        </div>
+
+        <div id="addnote" class="page" style="display:none;">
+            <h2>Add Note</h2>
+            <p>Note addition form will go here.</p>
+        </div>
+
+        <div id="deletenote" class="page" style="display:none;">
+            <h2>Delete Note</h2>
+            <p>Note deletion interface will go here.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function showPage(pageId, button) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+    // Show selected page
+    document.getElementById(pageId).style.display = 'block';
+
+    // Update active button
+    document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+    button.classList.add('active');
+}
+</script>
+
+</body>
+</html>

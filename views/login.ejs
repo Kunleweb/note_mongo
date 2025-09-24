@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <http charset="UTF-8">
+    <http name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Note - Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="form-container">
+        <form id = "loginform">
+            <h2>Secure Note Login</h2>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Login">
+        <input type="button" value="Sign Up" onclick="window.location.href='signup.html'">
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/login.js"></script>
+</body>
+</html>
