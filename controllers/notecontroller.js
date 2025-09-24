@@ -3,10 +3,15 @@ const note = require('./../model/noteSchema')
 
 
 
+exports.notepage = (req, res)=>{
+    res.status(200).render('home.ejs')
+}
+
 exports.mynotes = async(req,res)=>{
     const mynote =  await note.find().select('-__v');
     res.status(200).json({status: 'success', data: mynote})
 }
+
 
 
 exports.note= async(req, res)=>{

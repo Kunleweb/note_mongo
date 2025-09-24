@@ -92,3 +92,18 @@ exports.protect = async(req,res,next)=>{
     }
 
 }
+
+
+
+exports.isLoggedIn = async (req, res, next) => {
+    if(req.cookies.jwt){
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
+    const currentUser = await user.findById(decoded.id)
+    if(!currentUser){
+        return next()
+    }
+    res.locals.user = currentUser;
+    return next()
+}
+ 
+}
