@@ -31,6 +31,10 @@ exports.loginpage = (req,res)=>{
     res.status(200).render('login.ejs')
 }
 
+exports.signuppage = (req,res)=>{
+    res.status(200).render('signup.ejs')
+}
+
 
 
 
