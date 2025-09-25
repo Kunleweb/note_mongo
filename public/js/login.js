@@ -11,7 +11,7 @@ const login = async(email, password)=>{
 
     if (res.data.status === 'success') {
       // redirect after successful login
-      window.location.href = 'http://127.0.0.1:3000/api/v1/home'
+      window.location.href = '/api/v1/home'
     } 
 
 }
