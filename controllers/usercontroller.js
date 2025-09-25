@@ -125,4 +125,3 @@ exports.isLoggedIn = async (req, res, next) => {
 
 
 
-module.export = cookieStore

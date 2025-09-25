@@ -21,7 +21,8 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.use(helmet.crossOriginResourcePolicy({policy: 'cross-origin'}))
 
-app.use('/api/user', user_route)
+
+app.use('/', user_route)
 app.use('/api/note', note_route)
 app.use('/api/v1', view_route)
 
