@@ -74,3 +74,22 @@ document.getElementById('save_content').addEventListener('submit', (e)=>{
 
 
 
+
+document.querySelectorAll('.delete-note-form').forEach(form => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const slug = form.dataset.slug;
+      const res = await axios.delete(`/api/note/deletenote/${slug}`);
+      if(res.data.status === 'success'){
+        form.parentElement.remove();
+      } else {
+        showAlert('sucesss!', 'done');
+        //will fix this  later
+      }
+    
+  });
+});
+
+
+
+

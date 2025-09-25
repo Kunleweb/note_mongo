@@ -56,7 +56,22 @@
     <!-- Delete Note Page -->
     <div id="deletenote" class="page" style="display:none;">
       <h2>Delete Note</h2>
-      <p>Note deletion interface will go here.</p>
+      <% if (notes && notes.length > 0) { %>
+  <ul class="delete-note-list">
+    <% notes.forEach(note => { %>
+      <li>
+        <h3><%= note.title %></h3>
+        <p><%= note.content %></p>
+        <form class="delete-note-form" data-slug="<%= note.slug%>">
+          <button type="submit" class="delete-note-btn">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>No notes to delete.</p>
+<% } %>
+
     </div>
   </div>
 </div>
