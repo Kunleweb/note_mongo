@@ -3,6 +3,7 @@ const app = express();
 const cookieParser = require('cookie-parser')
 const user_route = require('./routes/userroute');
 const note_route = require('./routes/noteroute');
+const view_route = require('./routes/viewroute')
 const path = require('path');
 const ejs = require('ejs');
 const helmet = require('helmet')
@@ -22,6 +23,7 @@ app.use(helmet.crossOriginResourcePolicy({policy: 'cross-origin'}))
 
 app.use('/api/user', user_route)
 app.use('/api/note', note_route)
+app.use('/api/v1', view_route)
 
 
 

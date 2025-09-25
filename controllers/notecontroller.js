@@ -3,9 +3,11 @@ const note = require('./../model/noteSchema')
 
 
 
-exports.notepage = (req, res)=>{
-    res.status(200).render('home.ejs')
-}
+exports.notepage = async(req, res)=>{
+    try{const notes = await note.find({userId: req.user._id})
+    // console.log('Current user:', req.user);
+    res.status(200).render('home.ejs', {notes})}catch(err){res.status(500).send('Error fetching note: '+ err.message)
+}}
 
 exports.mynotes = async(req,res)=>{
     const mynote =  await note.find().select('-__v');
@@ -25,7 +27,7 @@ exports.addnote = async(req,res)=>{
     try{const notes = await note.create({
         title: req.body.title,
         content: req.body.content,
-        userId: req.user.id
+        userId: req.user._id
     });
     res.status(200).json({status:'success', message:'note added!', data: notes})}
     catch(err){res.status(400).json({status:'error', message:err.message})}

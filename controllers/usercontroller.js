@@ -77,7 +77,10 @@ exports.protect = async(req,res,next)=>{
     try{let token
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
         token = req.headers.authorization.split(' ')[1]
-    };
+    }
+    else if(req.cookies.jwt){
+        token = req.cookies.jwt;
+    }
     if(!token){
         return next(res.status(401).json({status:'failed', message:'unauthorized'}))
     }
@@ -96,14 +99,30 @@ exports.protect = async(req,res,next)=>{
 
 
 exports.isLoggedIn = async (req, res, next) => {
-    if(req.cookies.jwt){
-        const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
-    const currentUser = await user.findById(decoded.id)
-    if(!currentUser){
-        return next()
+  try {
+    if (!req.cookies.jwt) {
+      return res.status(401).json({ message: "Not logged in" });
+    }
+
+    const decoded = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET
+    );
+    const currentUser = await user.findById(decoded.id);
+    if (!currentUser) {
+      return res.status(401).json({ message: "User no longer exists" });
     }
     res.locals.user = currentUser;
-    return next()
-}
- 
-}
+    req.user = currentUser; 
+    next();
+
+  } catch (err) {
+    console.error("Auth error:", err.message);
+    return res.status(401).json({ message: "Invalid or expired token" });
+  }
+};
+
+
+
+
+module.export = cookieStore

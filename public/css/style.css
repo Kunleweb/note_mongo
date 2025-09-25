@@ -1,6 +1,4 @@
-/* --------------------
-   General reset
--------------------- */
+/* -------------------- General reset -------------------- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,73 +6,11 @@
     font-family: Arial, sans-serif;
 }
 
-/* Body default background */
 body {
     background-color: #f5f5f5;
 }
 
-/* --------------------
-   Login / Sign Up Pages
--------------------- */
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* full screen */
-}
-
-form {
-    width: 90%;
-    max-width: 400px;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    text-align: center;
-}
-
-form h2 {
-    margin-bottom: 20px;
-    color: #333;
-}
-
-form label {
-    display: block;
-    text-align: left;
-    margin-top: 10px;
-    color: #555;
-}
-
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form input[type="submit"],
-form input[type="button"] {
-    width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-form input[type="submit"],
-form input[type="button"] {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-form input[type="submit"]:hover,
-form input[type="button"]:hover {
-    background-color: #45a049;
-}
-
-/* --------------------
-   Home Page / Sidebar
--------------------- */
+/* -------------------- Home Page / Sidebar -------------------- */
 .home-container {
     display: flex;
     height: 100vh;
@@ -82,7 +18,7 @@ form input[type="button"]:hover {
 
 /* Sidebar styling */
 .sidebar {
-    width: 200px;
+    width: 220px;
     background-color: #333;
     color: white;
     display: flex;
@@ -96,7 +32,6 @@ form input[type="button"]:hover {
     text-align: center;
 }
 
-/* Sidebar buttons matching form buttons */
 .sidebar-btn {
     background-color: #4CAF50;
     border: none;
@@ -120,29 +55,60 @@ form input[type="button"]:hover {
 
 /* Main content */
 .main-content {
-    flex-grow: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: 20px;
     background-color: #f5f5f5;
+    overflow: hidden;
 }
 
-/* Pages inside main content */
+/* Page inside main content */
 .page {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
-.alert {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  z-index: 9999;
-  color: #fff;
-  font-size: 1.8rem;
-  font-weight: 400;
-  text-align: center;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  padding: 1.6rem 15rem;
-  -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
-  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);}
+/* -------------------- Add Note form -------------------- */
+.add-note-form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.note-title {
+    font-size: 1.2rem;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-height: 50px;
+    box-sizing: border-box;
+}
+
+.note-content {
+    font-size: 1rem;
+    padding: 10px;
+    flex-grow: 1;
+    width: 100%;
+    resize: none;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.save-note-btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+/* -------------------- My Notes List -------------------- */
+#myNotes ul {
+    list-style: none;
+}
+
+#myNotes li {
+    background-color: #fff;
+}
