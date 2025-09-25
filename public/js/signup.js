@@ -66,4 +66,8 @@ document.getElementById('signupform').addEventListener('submit', (e)=>{
     signup(name,email, password,passwordConfirm);
 });
   
+document.getElementById('signupform').addEventListener('click', (e)=>{
+    e.preventDefault();
+    return window.location.href = '/'
+})
 
